@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-es="Asistencia" data-en="Attendance">Asistencia</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=4" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav>
+    <a class="nav-brand" href="index.html">D<span style="font-style:italic;">&</span>M</a>
+    <ul class="nav-links">
+      <li><a href="index.html" data-es="El día" data-en="The day">El día</a></li>
+      <li><a href="travel.html" data-es="Cómo llegar" data-en="Getting there">Cómo llegar</a></li>
+      <li><a href="rsvp.html" class="active" data-es="Asistencia" data-en="Attendance">Asistencia</a></li>
+      <li><a href="https://photos.app.goo.gl/DwbeDk7EVGPtyw8GA" target="_blank" rel="noopener" data-es="Fotos" data-en="Photos">Fotos</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button data-lang="es" class="active">ES</button>
+      <button data-lang="en">EN</button>
+    </div>
+  </nav>
+
+  <div class="page">
+    <section class="section">
+      <p class="section-label" data-es="Confirmación de asistencia" data-en="Attendance confirmation">Confirmación de asistencia</p>
+      <h2 data-es="¿Venís?" data-en="Are you coming?">¿Venís?</h2>
+      <p data-es-html="Por favor, confirmad vuestra asistencia antes del <strong>1 de octubre de 2026</strong>. Vuestra respuesta nos ayuda a organizar el día perfecto."
+         data-en-html="Please confirm your attendance by <strong>October 1st, 2026</strong>. Your reply helps us make the day perfect.">
+        Por favor, confirmad vuestra asistencia antes del <strong>1 de octubre de 2026</strong>. Vuestra respuesta nos ayuda a organizar el día perfecto.
+      </p>
+
+      <!--
+        RSVP SETUP INSTRUCTIONS:
+        1. Go to https://formspree.io and create a free account.
+        2. Create a new form and copy your form endpoint (looks like https://formspree.io/f/xxxxxxxx).
+        3. Replace YOUR_FORMSPREE_ID below with your actual form ID.
+      -->
+      <form
+        id="rsvp-form"
+        action="https://formspree.io/f/YOUR_FORMSPREE_ID"
+        method="POST"
+        class="form-grid"
+        novalidate
+      >
+
+        <!-- Name -->
+        <div class="form-group">
+          <label for="name" data-es="Nombre completo" data-en="Full name">Nombre completo</label>
+          <input type="text" id="name" name="name"
+            data-es-placeholder="Nombre y apellidos"
+            data-en-placeholder="First and last name"
+            placeholder="Nombre y apellidos" />
+          <span class="field-error" id="err-name" data-es="Por favor, introduce tu nombre completo." data-en="Please enter your full name.">Por favor, introduce tu nombre completo.</span>
+        </div>
+
+        <!-- Attendance -->
+        <div class="form-group">
+          <label data-es="¿Asistirás?" data-en="Will you attend?">¿Asistirás?</label>
+          <div class="radio-group" id="rg-attendance">
+            <label>
+              <input type="radio" name="attendance" value="yes" id="att-yes" />
+              <span data-es="Sí, allí estaré 🎉" data-en="Yes, I'll be there 🎉">Sí, allí estaré 🎉</span>
+            </label>
+            <label>
+              <input type="radio" name="attendance" value="no" id="att-no" />
+              <span data-es="Lo siento, no podré ir" data-en="Sorry, I can't make it">Lo siento, no podré ir</span>
+            </label>
+          </div>
+          <span class="field-error" id="err-attendance" data-es="Por favor, indica si asistirás." data-en="Please let us know if you'll attend.">Por favor, indica si asistirás.</span>
+        </div>
+
+        <!-- Fields shown only when attending -->
+        <div id="attending-fields" class="conditional">
+
+          <div class="form-grid" style="margin-top:0;">
+
+            <!-- Companion -->
+            <div class="form-group">
+              <label data-es="¿Vendrás con tu pareja?" data-en="Will you bring a plus-one?">¿Vendrás con tu pareja?</label>
+              <div class="radio-group" id="rg-companion">
+                <label>
+                  <input type="radio" name="companion" value="yes" id="comp-yes" />
+                  <span data-es="Sí" data-en="Yes">Sí</span>
+                </label>
+                <label>
+                  <input type="radio" name="companion" value="no" id="comp-no" />
+                  <span data-es="No" data-en="No">No</span>
+                </label>
+              </div>
+              <span class="field-error" id="err-companion" data-es="Por favor, indica si vendrás con tu pareja." data-en="Please let us know if you're bringing a plus-one.">Por favor, indica si vendrás con tu pareja.</span>
+            </div>
+
+            <div id="companion-name-group" class="form-group conditional">
+              <label for="companion-name" data-es="Nombre de tu pareja" data-en="Plus-one's name">Nombre de tu pareja</label>
+              <input type="text" id="companion-name" name="companion_name"
+                data-es-placeholder="Nombre y apellidos"
+                data-en-placeholder="First and last name"
+                placeholder="Nombre y apellidos" />
+              <span class="field-error" id="err-companion-name" data-es="Por favor, introduce el nombre de tu pareja." data-en="Please enter your plus-one's name.">Por favor, introduce el nombre de tu pareja.</span>
+            </div>
+
+            <!-- Children count -->
+            <div class="form-group">
+              <label for="children-count" data-es="Número de niños" data-en="Number of children">Número de niños</label>
+              <input type="number" id="children-count" name="children_count" min="0" max="3" value="0" />
+            </div>
+
+            <!-- Children names — dynamically generated when children > 0 -->
+            <div id="children-names-group" class="conditional"></div>
+
+            <!-- Bus -->
+            <div class="form-group">
+              <label data-es="¿Utilizarás el autobús para ir y volver del banquete?" data-en="Will you take the bus to the venue?">¿Utilizarás el autobús para ir y volver del banquete?</label>
+              <div class="radio-group" id="rg-bus">
+                <label>
+                  <input type="radio" name="bus" value="yes" />
+                  <span data-es="Sí" data-en="Yes">Sí</span>
+                </label>
+                <label>
+                  <input type="radio" name="bus" value="no" />
+                  <span data-es="No, iré por mi cuenta" data-en="No, I'll make my own way">No, iré por mi cuenta</span>
+                </label>
+              </div>
+              <span class="field-error" id="err-bus" data-es="Por favor, indica si utilizarás el autobús." data-en="Please let us know if you'll take the bus.">Por favor, indica si utilizarás el autobús.</span>
+            </div>
+
+            <!-- Dietary -->
+            <div class="form-group">
+              <label for="dietary" data-es="Restricciones alimentarias o alergias" data-en="Dietary requirements or allergies">Restricciones alimentarias o alergias</label>
+              <textarea id="dietary" name="dietary"
+                data-es-placeholder="Hacednos saber si tenéis alguna alergia, intolerancia o preferencia alimentaria especial&#10;Si no tenéis ninguna, podéis dejarlo en blanco"
+                data-en-placeholder="Let us know if you have any allergies, intolerances or dietary preferences&#10;If not, feel free to leave this blank"
+                placeholder="Hacednos saber si tenéis alguna alergia, intolerancia o preferencia alimentaria especial&#10;Si no tenéis ninguna, podéis dejarlo en blanco"></textarea>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div style="text-align:center;">
+          <button type="submit" class="btn" data-es="Confirmar asistencia" data-en="Confirm attendance">Confirmar asistencia</button>
+        </div>
+
+      </form>
+
+      <!-- Success message -->
+      <div id="success-msg" style="display:none; margin-top:2rem; text-align:center;">
+        <div class="divider"></div>
+        <p style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-style:italic; color:var(--charcoal);"
+           data-es="¡Muchas gracias! Nos vemos el 7 de agosto."
+           data-en="Thank you so much! See you on August 7th.">
+          ¡Muchas gracias! Nos vemos el 7 de agosto.
+        </p>
+        <p style="color:var(--gray); margin-top:0.5rem; font-size:0.9rem;"
+           data-es="Hemos recibido tu confirmación. Si necesitas cambiar algo, escríbenos directamente."
+           data-en="We've received your confirmation. If anything changes, just drop us a message.">
+          Hemos recibido tu confirmación. Si necesitas cambiar algo, escríbenos directamente.
+        </p>
+        <div class="divider"></div>
+      </div>
+
+    </section>
+  </div>
+
+  <footer>
+    <span data-es="Con todo nuestro amor — Diana &amp; Marcos" data-en="With all our love — Diana &amp; Marcos">Con todo nuestro amor — Diana &amp; Marcos</span>
+  </footer>
+
+  <script src="lang.js"></script>
+  <script>
+    initLang();
+
+    // Current language helper
+    const getLang = () => localStorage.getItem('lang') || 'es';
+
+    // Show/hide attending fields
+    const radios = document.querySelectorAll('input[name="attendance"]');
+    const attendingFields = document.getElementById('attending-fields');
+    radios.forEach(r => {
+      r.addEventListener('change', () => {
+        attendingFields.classList.toggle('visible', document.getElementById('att-yes').checked);
+      });
+    });
+
+    // Show/hide companion name
+    const companionRadios = document.querySelectorAll('input[name="companion"]');
+    const companionNameGroup = document.getElementById('companion-name-group');
+    companionRadios.forEach(r => {
+      r.addEventListener('change', () => {
+        companionNameGroup.classList.toggle('visible', document.getElementById('comp-yes').checked);
+      });
+    });
+
+    // Dynamically generate child name+age fields (language-aware)
+    const childrenInput = document.getElementById('children-count');
+    const childrenNamesGroup = document.getElementById('children-names-group');
+
+    function buildChildFields() {
+      const count = Math.min(Math.max(parseInt(childrenInput.value) || 0, 0), 3);
+      const lang = getLang();
+      childrenNamesGroup.innerHTML = '';
+      if (count > 0) {
+        childrenNamesGroup.classList.add('visible');
+        for (let i = 1; i <= count; i++) {
+          const label = lang === 'en' ? `Child ${i}` : `Niño/a ${i}`;
+          const namePlaceholder = lang === 'en' ? 'First and last name' : 'Nombre y apellidos';
+          const agePlaceholder = lang === 'en' ? 'Age' : 'Edad';
+          const errMsg = lang === 'en' ? 'Please enter the child\'s full name and age.' : 'Por favor, introduce el nombre completo y la edad del niño/a.';
+          const div = document.createElement('div');
+          div.style.cssText = 'margin-bottom:1rem;';
+          div.innerHTML = `
+            <div style="display:grid; grid-template-columns:1fr auto; gap:1rem; align-items:end;">
+              <div class="form-group" style="margin:0;">
+                <label for="child-name-${i}">${label}</label>
+                <input type="text" id="child-name-${i}" name="child_name_${i}" placeholder="${namePlaceholder}" />
+              </div>
+              <div class="form-group" style="margin:0; width:90px;">
+                <label for="child-age-${i}">${agePlaceholder}</label>
+                <input type="number" id="child-age-${i}" name="child_age_${i}" min="0" max="17" placeholder="0" />
+              </div>
+            </div>
+            <span class="field-error" id="err-child-name-${i}">${errMsg}</span>
+          `;
+          childrenNamesGroup.appendChild(div);
+        }
+      } else {
+        childrenNamesGroup.classList.remove('visible');
+      }
+    }
+
+    childrenInput.addEventListener('input', buildChildFields);
+
+    // Re-build child fields when language changes
+    document.querySelectorAll('.lang-toggle button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (parseInt(childrenInput.value) > 0) buildChildFields();
+      });
+    });
+
+    // Validation helpers
+    function setError(inputEl, errorEl, show) {
+      if (inputEl) inputEl.classList.toggle('invalid', show);
+      if (errorEl) errorEl.classList.toggle('visible', show);
+    }
+
+    function setRadioError(groupEl, errorEl, show) {
+      if (groupEl) groupEl.classList.toggle('invalid', show);
+      if (errorEl) errorEl.classList.toggle('visible', show);
+    }
+
+    function radioSelected(name) {
+      return !!document.querySelector(`input[name="${name}"]:checked`);
+    }
+
+    function validateForm() {
+      let valid = true;
+      const attending = document.getElementById('att-yes').checked;
+
+      // Name
+      const nameEl = document.getElementById('name');
+      const nameOk = nameEl.value.trim() !== '';
+      setError(nameEl, document.getElementById('err-name'), !nameOk);
+      if (!nameOk) valid = false;
+
+      // Email
+      const emailEl = document.getElementById('email');
+      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value.trim());
+      setError(emailEl, document.getElementById('err-email'), !emailOk);
+      if (!emailOk) valid = false;
+
+      // Attendance radio
+      const attOk = radioSelected('attendance');
+      setRadioError(document.getElementById('rg-attendance'), document.getElementById('err-attendance'), !attOk);
+      if (!attOk) valid = false;
+
+      // Fields only required when attending
+      if (attending) {
+        // Companion radio
+        const compOk = radioSelected('companion');
+        setRadioError(document.getElementById('rg-companion'), document.getElementById('err-companion'), !compOk);
+        if (!compOk) valid = false;
+
+        // Companion name (only if companion = yes)
+        if (document.getElementById('comp-yes').checked) {
+          const compNameEl = document.getElementById('companion-name');
+          const compNameOk = compNameEl.value.trim() !== '';
+          setError(compNameEl, document.getElementById('err-companion-name'), !compNameOk);
+          if (!compNameOk) valid = false;
+        }
+
+        // Child name + age fields (dynamically generated)
+        const count = parseInt(document.getElementById('children-count').value) || 0;
+        for (let i = 1; i <= count; i++) {
+          const cn = document.getElementById(`child-name-${i}`);
+          const ca = document.getElementById(`child-age-${i}`);
+          const errSpan = document.getElementById(`err-child-name-${i}`);
+          const cnOk = cn && cn.value.trim() !== '';
+          const caOk = ca && ca.value !== '';
+          const rowOk = cnOk && caOk;
+          if (cn) cn.classList.toggle('invalid', !cnOk);
+          if (ca) ca.classList.toggle('invalid', !caOk);
+          if (errSpan) errSpan.classList.toggle('visible', !rowOk);
+          if (!rowOk) valid = false;
+        }
+
+        // Bus radio
+        const busOk = radioSelected('bus');
+        setRadioError(document.getElementById('rg-bus'), document.getElementById('err-bus'), !busOk);
+        if (!busOk) valid = false;
+      }
+
+      return valid;
+    }
+
+    // Clear error on input/change
+    document.getElementById('name').addEventListener('input', () => setError(document.getElementById('name'), document.getElementById('err-name'), false));
+    document.getElementById('email').addEventListener('input', () => setError(document.getElementById('email'), document.getElementById('err-email'), false));
+    document.querySelectorAll('input[name="attendance"]').forEach(r => r.addEventListener('change', () => setRadioError(document.getElementById('rg-attendance'), document.getElementById('err-attendance'), false)));
+    document.querySelectorAll('input[name="companion"]').forEach(r => r.addEventListener('change', () => setRadioError(document.getElementById('rg-companion'), document.getElementById('err-companion'), false)));
+    document.querySelectorAll('input[name="bus"]').forEach(r => r.addEventListener('change', () => setRadioError(document.getElementById('rg-bus'), document.getElementById('err-bus'), false)));
+
+    // Formspree AJAX submission
+    const form = document.getElementById('rsvp-form');
+    const successMsg = document.getElementById('success-msg');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!validateForm()) {
+        // Scroll to first error
+        const firstError = form.querySelector('.invalid, .field-error.visible');
+        if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (response.ok) {
+        form.style.display = 'none';
+        successMsg.style.display = 'block';
+      } else {
+        const msg = getLang() === 'en'
+          ? 'There was a problem submitting the form. Please try again.'
+          : 'Hubo un problema al enviar el formulario. Por favor, inténtalo de nuevo.';
+        alert(msg);
+      }
+    });
+  </script>
+
+</body>
+</html>
