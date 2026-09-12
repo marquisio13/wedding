@@ -151,16 +151,35 @@
       <!-- Success message -->
       <div id="success-msg" style="display:none; margin-top:2rem; text-align:center;">
         <div class="divider"></div>
-        <p style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-style:italic; color:var(--charcoal);"
-           data-es="¡Muchas gracias! Nos vemos el 7 de agosto."
-           data-en="Thank you so much! See you on August 7th.">
-          ¡Muchas gracias! Nos vemos el 7 de agosto.
-        </p>
-        <p style="color:var(--gray); margin-top:0.5rem; font-size:0.9rem;"
-           data-es="Hemos recibido tu confirmación. Si necesitas cambiar algo, escríbenos directamente."
-           data-en="We've received your confirmation. If anything changes, just drop us a message.">
-          Hemos recibido tu confirmación. Si necesitas cambiar algo, escríbenos directamente.
-        </p>
+
+        <!-- Shown when attending -->
+        <div id="success-yes">
+          <p style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-style:italic; color:var(--charcoal);"
+             data-es="¡Muchas gracias! Nos vemos el 7 de agosto."
+             data-en="Thank you so much! See you on August 7th.">
+            ¡Muchas gracias! Nos vemos el 7 de agosto.
+          </p>
+          <p style="color:var(--gray); margin-top:0.5rem; font-size:0.9rem;"
+             data-es="Hemos recibido tu confirmación. Si necesitas cambiar algo, escríbenos directamente."
+             data-en="We've received your confirmation. If anything changes, just drop us a message.">
+            Hemos recibido tu confirmación. Si necesitas cambiar algo, escríbenos directamente.
+          </p>
+        </div>
+
+        <!-- Shown when not attending -->
+        <div id="success-no" style="display:none;">
+          <p style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-style:italic; color:var(--charcoal);"
+             data-es="¡Gracias por avisarnos! Os echaremos de menos."
+             data-en="Thank you for letting us know! We'll miss you.">
+            ¡Gracias por avisarnos! Os echaremos de menos.
+          </p>
+          <p style="color:var(--gray); margin-top:0.5rem; font-size:0.9rem;"
+             data-es="Hemos recibido tu respuesta. Si tus planes cambian, escríbenos directamente."
+             data-en="We've received your reply. If your plans change, just drop us a message.">
+            Hemos recibido tu respuesta. Si tus planes cambian, escríbenos directamente.
+          </p>
+        </div>
+
         <div class="divider"></div>
       </div>
 
@@ -334,6 +353,9 @@
         headers: { 'Accept': 'application/json' }
       });
       if (response.ok) {
+        const attending = document.getElementById('att-yes').checked;
+        document.getElementById('success-yes').style.display = attending ? 'block' : 'none';
+        document.getElementById('success-no').style.display = attending ? 'none' : 'block';
         form.style.display = 'none';
         successMsg.style.display = 'block';
       } else {
