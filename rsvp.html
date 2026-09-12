@@ -34,14 +34,19 @@
 
       <form
         id="rsvp-form"
-        action="https://formspree.io/f/xvkonjey"
+        action="https://api.web3forms.com/submit"
         method="POST"
         class="form-grid"
         novalidate
       >
 
-        <!-- Email subject for the notification you receive -->
-        <input type="hidden" name="_subject" value="Nueva confirmación de asistencia — Boda Diana & Marcos" />
+        <!-- Web3Forms access key -->
+        <input type="hidden" name="access_key" value="e30608d9-1100-4c34-aed5-bc44959e7234" />
+        <!-- Email subject + sender name for the notification you receive -->
+        <input type="hidden" name="subject" value="Nueva confirmación de asistencia — Boda Diana & Marcos" />
+        <input type="hidden" name="from_name" value="Web Boda Diana & Marcos" />
+        <!-- Honeypot spam protection (leave empty) -->
+        <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off" />
 
         <!-- Name -->
         <div class="form-group">
@@ -312,7 +317,7 @@
     document.querySelectorAll('input[name="companion"]').forEach(r => r.addEventListener('change', () => setRadioError(document.getElementById('rg-companion'), document.getElementById('err-companion'), false)));
     document.querySelectorAll('input[name="bus"]').forEach(r => r.addEventListener('change', () => setRadioError(document.getElementById('rg-bus'), document.getElementById('err-bus'), false)));
 
-    // Formspree AJAX submission
+    // Web3Forms AJAX submission
     const form = document.getElementById('rsvp-form');
     const successMsg = document.getElementById('success-msg');
     form.addEventListener('submit', async (e) => {
