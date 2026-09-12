@@ -217,6 +217,42 @@ nav {
   margin-bottom: 1rem;
 }
 
+/* ── Welcome (text + photo) ── */
+.welcome {
+  max-width: 1040px;
+  display: flex;
+  align-items: center;
+  gap: 3.5rem;
+}
+
+.welcome-text {
+  flex: 1 1 55%;
+}
+
+.welcome-image {
+  flex: 0 0 38%;
+}
+
+.welcome-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+}
+
+@media (max-width: 760px) {
+  .welcome {
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+  .welcome-image {
+    flex: none;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+}
+
 /* ── Timeline ── */
 .timeline {
   position: relative;

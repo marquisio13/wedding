@@ -13,7 +13,7 @@
     <a class="nav-brand" href="index.html">D<span style="font-style:italic;">&</span>M</a>
     <ul class="nav-links">
       <li><a href="index.html" data-es="El día" data-en="The day">El día</a></li>
-      <li><a href="travel.html" data-es="Cómo llegar" data-en="Getting there">Cómo llegar</a></li>
+      <li><a href="travel.html" data-es="Información útil" data-en="Useful Information">Información útil</a></li>
       <li><a href="rsvp.html" class="active" data-es="Asistencia" data-en="Attendance">Asistencia</a></li>
       <li><a href="https://photos.app.goo.gl/DwbeDk7EVGPtyw8GA" target="_blank" rel="noopener" data-es="Fotos" data-en="Photos">Fotos</a></li>
     </ul>
@@ -27,24 +27,21 @@
     <section class="section">
       <p class="section-label" data-es="Confirmación de asistencia" data-en="Attendance confirmation">Confirmación de asistencia</p>
       <h2 data-es="¿Venís?" data-en="Are you coming?">¿Venís?</h2>
-      <p data-es-html="Por favor, confirmad vuestra asistencia antes del <strong>1 de octubre de 2026</strong>. Vuestra respuesta nos ayuda a organizar el día perfecto."
-         data-en-html="Please confirm your attendance by <strong>October 1st, 2026</strong>. Your reply helps us make the day perfect.">
-        Por favor, confirmad vuestra asistencia antes del <strong>1 de octubre de 2026</strong>. Vuestra respuesta nos ayuda a organizar el día perfecto.
+      <p data-es-html="Por favor, confirmad vuestra asistencia antes del <strong>1 de noviembre de 2026</strong>. Vuestra respuesta nos ayuda a organizar el día perfecto."
+         data-en-html="Please confirm your attendance by <strong>November 1st, 2026</strong>. Your reply helps us make the day perfect.">
+        Por favor, confirmad vuestra asistencia antes del <strong>1 de noviembre de 2026</strong>. Vuestra respuesta nos ayuda a organizar el día perfecto.
       </p>
 
-      <!--
-        RSVP SETUP INSTRUCTIONS:
-        1. Go to https://formspree.io and create a free account.
-        2. Create a new form and copy your form endpoint (looks like https://formspree.io/f/xxxxxxxx).
-        3. Replace YOUR_FORMSPREE_ID below with your actual form ID.
-      -->
       <form
         id="rsvp-form"
-        action="https://formspree.io/f/YOUR_FORMSPREE_ID"
+        action="https://formspree.io/f/xvkonjey"
         method="POST"
         class="form-grid"
         novalidate
       >
+
+        <!-- Email subject for the notification you receive -->
+        <input type="hidden" name="_subject" value="Nueva confirmación de asistencia — Boda Diana & Marcos" />
 
         <!-- Name -->
         <div class="form-group">
@@ -131,9 +128,9 @@
             <div class="form-group">
               <label for="dietary" data-es="Restricciones alimentarias o alergias" data-en="Dietary requirements or allergies">Restricciones alimentarias o alergias</label>
               <textarea id="dietary" name="dietary"
-                data-es-placeholder="Hacednos saber si tenéis alguna alergia, intolerancia o preferencia alimentaria especial&#10;Si no tenéis ninguna, podéis dejarlo en blanco"
-                data-en-placeholder="Let us know if you have any allergies, intolerances or dietary preferences&#10;If not, feel free to leave this blank"
-                placeholder="Hacednos saber si tenéis alguna alergia, intolerancia o preferencia alimentaria especial&#10;Si no tenéis ninguna, podéis dejarlo en blanco"></textarea>
+                data-es-placeholder="Hacednos saber si tenéis alguna alergia, intolerancia o preferencia especial.&#10;Si no tenéis ninguna, podéis dejarlo en blanco."
+                data-en-placeholder="Let us know if you have any allergies, intolerances or dietary preferences.&#10;If not, feel free to leave this blank."
+                placeholder="Hacednos saber si tenéis alguna alergia, intolerancia o preferencia especial.&#10;Si no tenéis ninguna, podéis dejarlo en blanco."></textarea>
             </div>
 
           </div>
@@ -265,12 +262,6 @@
       setError(nameEl, document.getElementById('err-name'), !nameOk);
       if (!nameOk) valid = false;
 
-      // Email
-      const emailEl = document.getElementById('email');
-      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value.trim());
-      setError(emailEl, document.getElementById('err-email'), !emailOk);
-      if (!emailOk) valid = false;
-
       // Attendance radio
       const attOk = radioSelected('attendance');
       setRadioError(document.getElementById('rg-attendance'), document.getElementById('err-attendance'), !attOk);
@@ -317,7 +308,6 @@
 
     // Clear error on input/change
     document.getElementById('name').addEventListener('input', () => setError(document.getElementById('name'), document.getElementById('err-name'), false));
-    document.getElementById('email').addEventListener('input', () => setError(document.getElementById('email'), document.getElementById('err-email'), false));
     document.querySelectorAll('input[name="attendance"]').forEach(r => r.addEventListener('change', () => setRadioError(document.getElementById('rg-attendance'), document.getElementById('err-attendance'), false)));
     document.querySelectorAll('input[name="companion"]').forEach(r => r.addEventListener('change', () => setRadioError(document.getElementById('rg-companion'), document.getElementById('err-companion'), false)));
     document.querySelectorAll('input[name="bus"]').forEach(r => r.addEventListener('change', () => setRadioError(document.getElementById('rg-bus'), document.getElementById('err-bus'), false)));
