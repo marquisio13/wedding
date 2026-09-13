@@ -25,6 +25,35 @@
 </head>
 <body>
 
+  <!-- Invitation intro (envelope) — shown once per device -->
+  <div id="invite" class="invite">
+    <div class="invite-seq" id="inviteSeq">
+      <img class="fr" src="frame-1.webp" alt="" style="opacity:1" />
+      <img class="fr" loading="lazy" src="frame-2.webp" alt="" />
+      <img class="fr" loading="lazy" src="frame-3.webp" alt="" />
+      <img class="fr" loading="lazy" src="frame-4.webp" alt="" />
+      <img class="fr" loading="lazy" src="frame-5.webp" alt="" />
+      <img class="fr" loading="lazy" src="frame-6.webp" alt="" />
+      <img class="fr" loading="lazy" src="frame-7.webp" alt="" />
+      <img class="fr" loading="lazy" src="frame-8.webp" alt="" />
+      <img class="fr" loading="lazy" src="frame-9.webp" alt="" />
+      <p class="invite-hint" data-es="Toca para abrir" data-en="Tap to open">Toca para abrir</p>
+    </div>
+    <div class="invite-letterwrap">
+      <div class="invite-letter">
+        <p data-es="Queridos amigos y familia," data-en="Dear friends and family,">Queridos amigos y familia,</p>
+        <p data-es="Después de tanto tiempo soñándolo, por fin podemos deciros que nos casamos. Y no se nos ocurre mejor manera de celebrarlo que rodeados de las personas que han caminado con nosotros hasta aquí." data-en="After dreaming about it for so long, we can finally tell you that we are getting married. And we can't think of a better way to celebrate than surrounded by the people who have walked with us to this point.">Después de tanto tiempo soñándolo, por fin podemos deciros que nos casamos. Y no se nos ocurre mejor manera de celebrarlo que rodeados de las personas que han caminado con nosotros hasta aquí.</p>
+        <p data-es="Nos hace muchísima ilusión invitaros a compartir uno de los días más importantes de nuestra vida. Será un día lleno de alegría, de baile y de recuerdos que esperamos guardar para siempre." data-en="It would mean the world to us to have you share one of the most important days of our lives. It will be a day full of joy, dancing and memories we hope to keep forever.">Nos hace muchísima ilusión invitaros a compartir uno de los días más importantes de nuestra vida. Será un día lleno de alegría, de baile y de recuerdos que esperamos guardar para siempre.</p>
+        <p data-es="En esta invitación encontraréis todos los detalles: el lugar, los horarios y todo lo que necesitéis saber para acompañarnos." data-en="In this invitation you'll find all the details: the venue, the timings and everything you need to know to join us.">En esta invitación encontraréis todos los detalles: el lugar, los horarios y todo lo que necesitéis saber para acompañarnos.</p>
+        <p data-es="Gracias por formar parte de nuestra historia." data-en="Thank you for being part of our story.">Gracias por formar parte de nuestra historia.</p>
+        <p class="il-close" data-es="Con todo nuestro cariño," data-en="With all our love,">Con todo nuestro cariño,</p>
+        <p class="il-sign" data-es="Diana y Marcos" data-en="Diana and Marcos">Diana y Marcos</p>
+        <button class="invite-enter" id="inviteEnter" data-es="Entrar" data-en="Enter">Entrar</button>
+      </div>
+    </div>
+  </div>
+  <script>(function(){try{if(!localStorage.getItem('inviteSeen')){var i=document.getElementById('invite');i.style.display='flex';document.body.style.overflow='hidden';}}catch(e){}})();</script>
+
   <nav>
     <a class="nav-brand" href="index.html">D<span style="font-style:italic;">&</span>M</a>
     <ul class="nav-links">
@@ -189,6 +218,8 @@
 
   <footer>
     <span data-es="Con todo nuestro amor — Diana &amp; Marcos" data-en="With all our love — Diana &amp; Marcos">Con todo nuestro amor — Diana &amp; Marcos</span>
+    <br />
+    <button id="inviteReplay" class="invite-replay" data-es="Ver invitación" data-en="View invitation">Ver invitación</button>
   </footer>
 
   <script src="lang.js"></script>

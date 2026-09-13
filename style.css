@@ -558,6 +558,139 @@ footer {
   color: var(--gold-lt);
 }
 
+/* ── Invitation intro (envelope) ── */
+.invite {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: #fdfbf7;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: opacity 0.8s ease;
+}
+.invite.hide { opacity: 0; pointer-events: none; }
+
+.invite-seq {
+  position: relative;
+  width: min(86vw, 470px);
+  aspect-ratio: 640 / 467;
+  cursor: pointer;
+  transition: opacity 0.6s ease;
+}
+.invite-seq .fr {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: auto;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.22s linear;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.invite.reveal .invite-seq { opacity: 0; pointer-events: none; }
+
+.invite-hint {
+  position: absolute;
+  left: 0; right: 0;
+  bottom: -38px;
+  text-align: center;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  transition: opacity 0.4s;
+}
+.invite.open .invite-hint { opacity: 0; }
+
+.invite-letterwrap {
+  position: absolute;
+  left: 50%; top: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  opacity: 0;
+  transform: translate(-50%, -42%) scale(0.94);
+  transition: opacity 0.7s ease 0.1s, transform 0.9s cubic-bezier(0.2, 0.75, 0.25, 1) 0.1s;
+  pointer-events: none;
+  z-index: 5;
+}
+.invite.reveal .invite-letterwrap {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  pointer-events: auto;
+}
+
+/* A4-proportioned letter page */
+.invite-letter {
+  width: min(88vw, 52vh);
+  aspect-ratio: 210 / 297;
+  overflow: auto;
+  background: #fdfbf7 url('letter-paper.webp') center / cover;
+  border: 1px solid #ece5da;
+  border-radius: 3px;
+  box-shadow: 0 26px 60px rgba(60, 45, 20, 0.22);
+  padding: clamp(42px, 7.5vh, 80px) clamp(24px, 4.6vh, 50px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: left;
+}
+.invite-letter p {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: clamp(0.82rem, 1.95vh, 1.05rem);
+  line-height: 1.75;
+  color: var(--gray);
+  margin-bottom: 1em;
+}
+.invite-letter p:last-child { margin-bottom: 0; }
+
+.invite-letter .il-close {
+  margin-top: 0.6em;
+  margin-bottom: 0.2em;
+}
+.invite-letter .il-sign {
+  margin-bottom: 0;
+}
+
+/* Quiet "Entrar" button, at the bottom of the letter */
+.invite-enter {
+  align-self: center;
+  margin-top: auto;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.5rem 1.5rem;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gray);
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+.invite-enter:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+  background: var(--ivory2);
+}
+
+.invite-replay {
+  background: none;
+  border: none;
+  color: var(--gold-lt);
+  cursor: pointer;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  margin-top: 0.6rem;
+}
+.invite-replay:hover { color: var(--gold); }
+
 /* ── Responsive ── */
 @media (max-width: 600px) {
   nav { padding: 0 1.25rem; }
