@@ -635,15 +635,15 @@ footer {
   padding: clamp(42px, 7.5vh, 80px) clamp(24px, 4.6vh, 50px);
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   text-align: left;
 }
 .invite-letter p {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 400;
-  font-size: clamp(0.82rem, 1.95vh, 1.05rem);
+  font-size: clamp(0.92rem, 2vh, 1.08rem);
   line-height: 1.75;
-  color: var(--gray);
+  color: var(--charcoal);
   margin-bottom: 1em;
 }
 .invite-letter p:last-child { margin-bottom: 0; }
@@ -659,7 +659,7 @@ footer {
 /* Quiet "Entrar" button, at the bottom of the letter */
 .invite-enter {
   align-self: center;
-  margin-top: auto;
+  margin-top: clamp(1.6rem, 3.5vh, 2.4rem);
   background: transparent;
   border: 1px solid var(--border);
   border-radius: 6px;
@@ -676,6 +676,18 @@ footer {
   color: var(--gold);
   border-color: var(--gold);
   background: var(--ivory2);
+}
+
+/* On phones: use more of the screen and drop the strict A4 ratio */
+@media (max-width: 600px) {
+  .invite-letter {
+    width: 92vw;
+    aspect-ratio: auto;
+    height: auto;
+    max-height: 86vh;
+    padding: clamp(30px, 4.5vh, 48px) clamp(24px, 6vw, 34px);
+    justify-content: flex-start;
+  }
 }
 
 .invite-replay {
