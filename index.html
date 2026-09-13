@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
   <title data-es="El Día" data-en="The Day">El Día</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg?v=4" />
   <link rel="stylesheet" href="style.css" />
@@ -66,7 +67,10 @@
       <p data-es="Diana y Marcos." data-en="Diana and Marcos.">Diana y Marcos.</p>
       </div>
       <div class="welcome-image">
-        <img src="us.png" alt="Diana y Marcos" />
+        <picture>
+          <source srcset="us.webp" type="image/webp" />
+          <img src="us.png" alt="Diana y Marcos" />
+        </picture>
       </div>
     </section>
 

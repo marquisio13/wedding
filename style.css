@@ -341,6 +341,37 @@ nav {
 }
 .map-link:hover { border-color: var(--gold); }
 
+/* ── Hotel list ── */
+.hotel-list {
+  list-style: none;
+  margin-top: 1.25rem;
+}
+
+.hotel-list li {
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--border);
+  color: var(--gray);
+  font-size: 0.95rem;
+}
+
+.hotel-list li:last-child { border-bottom: none; }
+
+.hotel-list a {
+  color: var(--charcoal);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold);
+  transition: color 0.2s;
+}
+
+.hotel-list a:hover { color: var(--gold); }
+
+.hotel-list .stars {
+  color: var(--gold);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
 /* ── Placeholder card ── */
 .placeholder-card {
   border: 1px dashed var(--border);
