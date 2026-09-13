@@ -21,7 +21,7 @@
   <meta name="twitter:image" content="https://bodadianaymarcos.com/og-image.jpg" />
 
   <link rel="icon" type="image/svg+xml" href="favicon.svg?v=4" />
-  <link rel="stylesheet" href="style.css?v=2" />
+  <link rel="stylesheet" href="style.css?v=5" />
 </head>
 <body>
 
@@ -98,6 +98,11 @@
           <span class="countdown-number" id="cd-seconds">00</span>
           <span class="countdown-label" data-es="segundos" data-en="seconds">segundos</span>
         </div>
+      </div>
+
+      <div class="countdown-done" id="countdownDone" style="display:none;">
+        <p class="cd-done-title" data-es="¡Ya estamos casados!" data-en="We're married!">¡Ya estamos casados!</p>
+        <p class="cd-done-sub" data-es="Gracias por acompañarnos en un día tan especial." data-en="Thank you for celebrating this special day with us.">Gracias por acompañarnos en un día tan especial.</p>
       </div>
     </section>
 
@@ -222,7 +227,7 @@
     <button id="inviteReplay" class="invite-replay" data-es="Ver invitación" data-en="View invitation">Ver invitación</button>
   </footer>
 
-  <script src="lang.js"></script>
+  <script src="lang.js?v=3"></script>
   <script>initLang();</script>
   <script>
     (function () {
@@ -230,7 +235,11 @@
       function pad(n) { return String(n).padStart(2, '0'); }
       function tick() {
         const diff = target - Date.now();
-        if (diff <= 0) { document.getElementById('countdown').style.display = 'none'; return; }
+        if (diff <= 0) {
+          document.getElementById('countdown').style.display = 'none';
+          document.getElementById('countdownDone').style.display = 'block';
+          return;
+        }
         const d = Math.floor(diff / 86400000);
         const h = Math.floor((diff % 86400000) / 3600000);
         const m = Math.floor((diff % 3600000) / 60000);

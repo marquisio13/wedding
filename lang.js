@@ -27,6 +27,24 @@ function initLang() {
   });
   initNav();
   initInvite();
+  initReveal();
+}
+
+// Gentle fade/slide-in of sections as they scroll into view
+function initReveal() {
+  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const els = document.querySelectorAll('.section');
+  if (reduce || !('IntersectionObserver' in window)) return; // leave content visible
+  els.forEach(el => el.classList.add('sr'));
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('sr-shown');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  els.forEach(el => io.observe(el));
 }
 
 // Envelope invitation intro (frame-sequence flipbook)

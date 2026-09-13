@@ -171,6 +171,41 @@ nav {
   color: var(--gold-lt);
 }
 
+/* Post-wedding message (replaces the countdown once the day passes) */
+.countdown-done {
+  margin-top: 4rem;
+  text-align: center;
+}
+.cd-done-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(1.7rem, 4.5vw, 2.6rem);
+  color: var(--gold);
+  margin-bottom: 0.6rem;
+}
+.cd-done-sub {
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-lt);
+}
+
+/* ── Gentle scroll reveal ── */
+.sr {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+  will-change: opacity, transform;
+}
+.sr.sr-shown {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sr { opacity: 1; transform: none; transition: none; }
+}
+
 .divider {
   width: 60px;
   height: 1px;
