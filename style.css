@@ -298,12 +298,13 @@ nav {
   margin-top: 4px;
 }
 
-.timeline-dot .time {
+.timeline-body .time {
+  display: block;
   font-family: 'Cormorant Garamond', serif;
-  font-size: 0.9rem;
+  font-size: 1.05rem;
   color: var(--gold);
-  letter-spacing: 0.05em;
-  white-space: nowrap;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.15rem;
 }
 
 .timeline-body h3 {
