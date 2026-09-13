@@ -8,7 +8,7 @@
   --ivory:   #FAF8F3;
   --ivory2:  #F2EDE3;
   --gold:    #B8965A;
-  --gold-lt: #D4AF7A;
+  --gold-lt: #AE8B44;
   --charcoal:#2C2C2C;
   --gray:    #7A7060;
   --border:  #DDD5C4;
@@ -302,6 +302,8 @@ nav {
   display: block;
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.2;
   color: var(--gold);
   letter-spacing: 0.08em;
   margin-bottom: 0.15rem;
@@ -334,16 +336,23 @@ nav {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  font-size: 0.78rem;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.72rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--gray);
   text-decoration: none;
-  margin-top: 0.5rem;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s;
+  margin-top: 0.7rem;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
 }
-.map-link:hover { border-color: var(--gold); }
+.map-link:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+  background: var(--ivory2);
+}
 
 /* ── Hotel list ── */
 .hotel-list {
@@ -478,7 +487,7 @@ nav {
   letter-spacing: 0.2em;
   text-transform: uppercase;
   border: none;
-  border-radius: 2px;
+  border-radius: 6px;
   cursor: pointer;
   transition: background 0.2s;
   margin-top: 1rem;

@@ -1,0 +1,16 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//bodadianaymarcos.com//Boda Diana & Marcos//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:boda-diana-marcos-20270807@bodadianaymarcos.com
+DTSTAMP:20260913T000000Z
+DTSTART;VALUE=DATE:20270807
+DTEND;VALUE=DATE:20270808
+SUMMARY:Boda de Diana & Marcos
+LOCATION:Catedral de León\, León\, España
+DESCRIPTION:¡Nos casamos! Ceremonia a las 12:40 en la Catedral de León. Toda la información en https://bodadianaymarcos.com
+URL:https://bodadianaymarcos.com
+END:VEVENT
+END:VCALENDAR
