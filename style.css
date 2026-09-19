@@ -322,7 +322,9 @@ nav {
     flex-direction: column;
     gap: 2.25rem;
   }
+  .schedule-main { order: 1; }
   .schedule-photo {
+    order: 2;
     flex: none;
     width: 100%;
     max-width: 300px;
