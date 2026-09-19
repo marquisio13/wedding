@@ -1,5 +1,5 @@
 /* ── Fonts ── */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Lato:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Lato:wght@300;400;700&display=swap');
 
 /* ── Reset & Base ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -97,10 +97,11 @@ nav {
 
 .hero-eyebrow {
   font-family: 'Lato', sans-serif;
-  font-size: 1.02rem;
-  letter-spacing: 0.34em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: #8C6D2C;
+  color: var(--gold);
   margin-bottom: 1.5rem;
 }
 
@@ -120,19 +121,18 @@ nav {
 
 .hero-date {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.65rem;
+  font-size: 1.15rem;
   font-weight: 400;
   letter-spacing: 0.12em;
-  color: var(--charcoal);
-  margin-bottom: 0.5rem;
+  color: var(--gray);
+  margin-bottom: 0.4rem;
 }
 
 .hero-location {
-  font-size: 1.05rem;
-  font-weight: 400;
+  font-size: 0.82rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #8C6D2C;
+  color: var(--gold-lt);
 }
 
 /* ── Countdown ── */
@@ -156,7 +156,7 @@ nav {
 
 .countdown-number {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1.9rem, 4.6vw, 3.1rem);
+  font-size: clamp(1.5rem, 3.5vw, 2.1rem);
   font-weight: 600;
   color: var(--charcoal);
   line-height: 1;
@@ -166,10 +166,10 @@ nav {
 
 .countdown-label {
   font-family: 'Lato', sans-serif;
-  font-size: 0.66rem;
-  letter-spacing: 0.2em;
+  font-size: 0.56rem;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: #8C6D2C;
+  color: var(--gold-lt);
 }
 
 /* Post-wedding message (replaces the countdown once the day passes) */
@@ -745,11 +745,6 @@ footer {
   .form-row { grid-template-columns: 1fr; }
   .timeline::before { left: 20px; }
   .timeline-dot { width: 42px; }
-
-  /* Keep the (now larger) countdown fitting on phones */
-  .countdown-unit { padding: 0 0.75rem; }
-  .countdown-number { font-size: 1.7rem; }
-  .countdown-label { font-size: 0.6rem; letter-spacing: 0.14em; }
 
   /* Hamburger button */
   .nav-toggle {
