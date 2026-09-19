@@ -320,7 +320,7 @@ nav {
 @media (max-width: 760px) {
   .schedule {
     flex-direction: column;
-    gap: 2.25rem;
+    gap: 3.5rem;
   }
   .schedule-main { order: 1; }
   .schedule-photo {
