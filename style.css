@@ -292,6 +292,44 @@ nav {
   }
 }
 
+/* ── Schedule (photo + timeline) ── */
+.schedule {
+  max-width: 1040px;
+  display: flex;
+  align-items: center;
+  gap: 3.5rem;
+}
+
+.schedule-photo {
+  flex: 0 0 40%;
+}
+
+.schedule-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 18px 42px rgba(60, 45, 20, 0.18);
+}
+
+.schedule-main {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+@media (max-width: 760px) {
+  .schedule {
+    flex-direction: column;
+    gap: 2.25rem;
+  }
+  .schedule-photo {
+    flex: none;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}
+
 /* ── Timeline ── */
 .timeline {
   position: relative;
