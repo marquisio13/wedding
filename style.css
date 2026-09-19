@@ -97,10 +97,10 @@ nav {
 
 .hero-eyebrow {
   font-family: 'Lato', sans-serif;
-  font-size: 0.72rem;
-  letter-spacing: 0.3em;
+  font-size: 1.02rem;
+  letter-spacing: 0.34em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: #8C6D2C;
   margin-bottom: 1.5rem;
 }
 
@@ -120,18 +120,19 @@ nav {
 
 .hero-date {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.15rem;
+  font-size: 1.65rem;
   font-weight: 400;
   letter-spacing: 0.12em;
-  color: var(--gray);
-  margin-bottom: 0.4rem;
+  color: var(--charcoal);
+  margin-bottom: 0.5rem;
 }
 
 .hero-location {
-  font-size: 0.82rem;
+  font-size: 1.05rem;
+  font-weight: 400;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--gold-lt);
+  color: #8C6D2C;
 }
 
 /* ── Countdown ── */
@@ -155,8 +156,8 @@ nav {
 
 .countdown-number {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1.5rem, 3.5vw, 2.1rem);
-  font-weight: 300;
+  font-size: clamp(1.9rem, 4.6vw, 3.1rem);
+  font-weight: 600;
   color: var(--charcoal);
   line-height: 1;
   min-width: 2ch;
@@ -165,10 +166,10 @@ nav {
 
 .countdown-label {
   font-family: 'Lato', sans-serif;
-  font-size: 0.56rem;
-  letter-spacing: 0.22em;
+  font-size: 0.66rem;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--gold-lt);
+  color: #8C6D2C;
 }
 
 /* Post-wedding message (replaces the countdown once the day passes) */
@@ -744,6 +745,11 @@ footer {
   .form-row { grid-template-columns: 1fr; }
   .timeline::before { left: 20px; }
   .timeline-dot { width: 42px; }
+
+  /* Keep the (now larger) countdown fitting on phones */
+  .countdown-unit { padding: 0 0.75rem; }
+  .countdown-number { font-size: 1.7rem; }
+  .countdown-label { font-size: 0.6rem; letter-spacing: 0.14em; }
 
   /* Hamburger button */
   .nav-toggle {
