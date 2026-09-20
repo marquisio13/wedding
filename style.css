@@ -332,6 +332,44 @@ nav {
   }
 }
 
+/* ── Gifts (content + photo) ── */
+.gifts {
+  max-width: 1040px;
+  display: flex;
+  align-items: center;
+  gap: 3.5rem;
+}
+
+.gifts-main {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.gifts-photo {
+  flex: 0 0 38%;
+}
+
+.gifts-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 18px 42px rgba(60, 45, 20, 0.18);
+}
+
+@media (max-width: 760px) {
+  .gifts {
+    flex-direction: column;
+    gap: 3.5rem;
+  }
+  .gifts-photo {
+    flex: none;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}
+
 /* ── Timeline ── */
 .timeline {
   position: relative;
