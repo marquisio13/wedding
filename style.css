@@ -76,12 +76,13 @@ nav {
 /* ── Hero ── */
 .hero {
   min-height: calc(100vh - 64px);
+  min-height: calc(100svh - 64px); /* phones: the visible screen, not behind the browser bars */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 4rem 2rem;
+  padding: clamp(1.5rem, 5vh, 4rem) 2rem;
   background: var(--ivory);
   position: relative;
 }
@@ -96,23 +97,31 @@ nav {
 }
 
 .hero-eyebrow {
-  font-family: 'Lato', sans-serif;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.3em;
+  font-family: 'Cormorant Garamond', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 1.5rem;
+  margin-bottom: 0;
 }
 
 .hero h1 {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(3.2rem, 8vw, 6rem);
+  font-size: clamp(3.2rem, min(8vw, 11vh), 6rem);
   font-weight: 300;
   line-height: 1.1;
   color: var(--charcoal);
-  margin-bottom: 1.25rem;
+  margin-bottom: 0;
 }
+
+/* Two matching gold bars framing the names; spacing shrinks on short screens
+   so the whole block always fits with equal space above and below */
+.hero .divider {
+  margin: clamp(1.1rem, 3.2vh, 2rem) auto;
+}
+.hero .hero-rule-top    { margin-bottom: clamp(1.6rem, 5.2vh, 3.25rem); }
+.hero .hero-rule-bottom { margin-top:    clamp(1.6rem, 5.2vh, 3.25rem); }
 
 .hero h1 em {
   font-style: italic;
@@ -139,7 +148,7 @@ nav {
 .countdown {
   display: flex;
   align-items: flex-start;
-  margin-top: 4.5rem;
+  margin-top: clamp(2rem, 7vh, 4.5rem);
 }
 
 .countdown-unit {
@@ -174,7 +183,7 @@ nav {
 
 /* Post-wedding message (replaces the countdown once the day passes) */
 .countdown-done {
-  margin-top: 4rem;
+  margin-top: clamp(2rem, 7vh, 4rem);
   text-align: center;
 }
 .cd-done-title {
@@ -333,11 +342,15 @@ nav {
 }
 
 /* ── Gifts (content + photo) ── */
+/* Gifts continues straight after the previous block (Travel page), so drop the
+   doubled section padding: the gap after the gold bar matches other sub-sections */
+.section.flush-bottom { padding-bottom: 0; }
 .gifts {
   max-width: 1040px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 3.5rem;
+  padding-top: 0;
 }
 
 .gifts-main {
@@ -360,6 +373,7 @@ nav {
 @media (max-width: 760px) {
   .gifts {
     flex-direction: column;
+    align-items: stretch;
     gap: 3.5rem;
   }
   .gifts-photo {
@@ -718,49 +732,63 @@ footer {
 }
 .invite.open .invite-hint { opacity: 0; }
 
+/* Full-screen scroll area for the letter: centred when it fits,
+   scrolls like a page when the screen is shorter than the letter */
 .invite-letterwrap {
   position: absolute;
-  left: 50%; top: 50%;
+  inset: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(184, 150, 90, 0.35) transparent;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  padding: 4vh 16px 0;
   opacity: 0;
-  transform: translate(-50%, -42%) scale(0.94);
-  transition: opacity 0.7s ease 0.1s, transform 0.9s cubic-bezier(0.2, 0.75, 0.25, 1) 0.1s;
+  transition: opacity 0.7s ease 0.1s;
   pointer-events: none;
   z-index: 5;
 }
+/* Bottom breathing room that stays reachable when scrolling */
+.invite-letterwrap::after {
+  content: '';
+  flex: 0 0 4vh;
+}
 .invite.reveal .invite-letterwrap {
   opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
   pointer-events: auto;
 }
 
-/* A4-proportioned letter page */
+/* Letter page — as tall as its text */
 .invite-letter {
-  width: min(88vw, 52vh);
-  aspect-ratio: 210 / 297;
-  overflow: auto;
+  margin: auto 0;
+  flex-shrink: 0;
+  width: min(100%, 600px);
   background: #fdfbf7 url('letter-paper.webp') center / cover;
   border: 1px solid #ece5da;
   border-radius: 3px;
   box-shadow: 0 26px 60px rgba(60, 45, 20, 0.22);
-  padding: clamp(42px, 7.5vh, 80px) clamp(24px, 4.6vh, 50px);
+  padding: clamp(32px, 6vh, 64px) clamp(26px, 5vw, 56px);
   display: flex;
   flex-direction: column;
-  justify-content: center;
   text-align: left;
+  transform: translateY(24px) scale(0.97);
+  transition: transform 0.9s cubic-bezier(0.2, 0.75, 0.25, 1) 0.1s;
 }
+.invite.reveal .invite-letter { transform: none; }
 .invite-letter p {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 400;
-  font-size: clamp(0.92rem, 2vh, 1.08rem);
-  line-height: 1.75;
+  font-size: clamp(1rem, 1.9vh, 1.1rem);
+  line-height: 1.65;
   color: var(--charcoal);
-  margin-bottom: 1em;
+  margin-bottom: 0.85em;
 }
 .invite-letter p:last-child { margin-bottom: 0; }
+/* A line followed by another line of the same block (single line break in the text) */
+.invite-letter p.il-line { margin-bottom: 0.3em; }
 
 .invite-letter .il-close {
   margin-top: 0.6em;
@@ -792,15 +820,13 @@ footer {
   background: var(--ivory2);
 }
 
-/* On phones: use more of the screen and drop the strict A4 ratio */
+/* On phones: use nearly the full width */
 @media (max-width: 600px) {
+  .invite-letterwrap { padding: 3vh 4vw 0; }
+  .invite-letterwrap::after { flex-basis: 3vh; }
   .invite-letter {
-    width: 92vw;
-    aspect-ratio: auto;
-    height: auto;
-    max-height: 86vh;
-    padding: clamp(30px, 4.5vh, 48px) clamp(24px, 6vw, 34px);
-    justify-content: flex-start;
+    width: 100%;
+    padding: clamp(30px, 4.5vh, 48px) clamp(22px, 6vw, 32px);
   }
 }
 
