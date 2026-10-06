@@ -5,6 +5,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
+  color-scheme: only light; /* the site is designed in light colours: ask browsers not to auto-darken it */
   --ivory:   #FAF8F3;
   --ivory2:  #F2EDE3;
   --gold:    #B8965A;
